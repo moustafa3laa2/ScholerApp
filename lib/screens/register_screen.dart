@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:schooler_app/screens/register_screen.dart';
+import 'package:schooler_app/screens/login_screen.dart';
 import 'package:schooler_app/widgets/custom_button.dart';
 import 'package:schooler_app/widgets/custom_text_field.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class LoginScreen extends StatelessWidget {
             const Align(
               alignment: Alignment.topLeft,
               child: Text(
-                'LOGIN',
+                'REGISTER',
                 style: TextStyle(
                   fontSize: 24,
                   color: Colors.white,
@@ -52,7 +52,7 @@ class LoginScreen extends StatelessWidget {
               height: 10,
             ),
             const CustomButton(
-              buttonName: 'LOGIN',
+              buttonName: 'REGISTER',
             ),
             const SizedBox(
               height: 20,
@@ -61,7 +61,7 @@ class LoginScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
-                  'don\'t have an account? ',
+                  'alreay have account  ',
                   style: TextStyle(
                     color: Colors.white,
                   ),
@@ -71,13 +71,12 @@ class LoginScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute<void>(
-                        builder: (BuildContext context) =>
-                            const RegisterScreen(),
+                        builder: (BuildContext context) => const LoginScreen(),
                       ),
                     );
                   },
                   child: const Text(
-                    '  Register',
+                    '  Login',
                     style: TextStyle(
                       color: Color(0xffC7EDE6),
                     ),
