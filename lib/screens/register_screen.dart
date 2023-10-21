@@ -1,95 +1,158 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:schooler_app/screens/login_screen.dart';
+import 'package:schooler_app/constants.dart';
 import 'package:schooler_app/widgets/custom_button.dart';
 import 'package:schooler_app/widgets/custom_text_field.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
-class RegisterScreen extends StatelessWidget {
-  const RegisterScreen({super.key});
+class RegisterScreen extends StatefulWidget {
+  RegisterScreen({super.key});
+  static String id = 'RegisterScreen';
+
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  String? email, password;
+
+  bool isLoading = false;
+
+  GlobalKey<FormState> formKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xff2B475E),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8),
-        child: Column(
-          children: [
-            const Spacer(
-              flex: 1,
-            ),
-            const Image(
-              image: AssetImage('assets/images/scholar.png'),
-            ),
-            const Text(
-              'Scholar Chat',
-              style: TextStyle(
-                  fontSize: 32,
-                  fontFamily: 'Pacifico-Regular',
-                  color: Colors.white),
-            ),
-            const Spacer(
-              flex: 2,
-            ),
-            const Align(
-              alignment: Alignment.topLeft,
-              child: Text(
-                'REGISTER',
-                style: TextStyle(
-                  fontSize: 24,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const CustomTextField(hintText: 'Email'),
-            const SizedBox(
-              height: 10,
-            ),
-            const CustomTextField(hintText: 'Password'),
-            const SizedBox(
-              height: 10,
-            ),
-            const CustomButton(
-              buttonName: 'REGISTER',
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+    return ModalProgressHUD(
+      inAsyncCall: isLoading,
+      child: Scaffold(
+        backgroundColor: kPrimaaryColor,
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: Form(
+            key: formKey,
+            child: ListView(
               children: [
-                const Text(
-                  'alreay have account  ',
-                  style: TextStyle(
-                    color: Colors.white,
+                const SizedBox(
+                  height: 50,
+                ),
+                const Image(
+                  image: AssetImage('assets/images/scholar.png'),
+                  height: 100,
+                ),
+                const Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    'Scholar Chat',
+                    style: TextStyle(
+                        fontSize: 32,
+                        fontFamily: 'Pacifico-Regular',
+                        color: Colors.white),
                   ),
                 ),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute<void>(
-                        builder: (BuildContext context) => const LoginScreen(),
-                      ),
-                    );
-                  },
-                  child: const Text(
-                    '  Login',
+                const SizedBox(
+                  height: 60,
+                ),
+                const Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    'REGISTER',
                     style: TextStyle(
-                      color: Color(0xffC7EDE6),
+                      fontSize: 24,
+                      color: Colors.white,
                     ),
                   ),
                 ),
+                const SizedBox(
+                  height: 20,
+                ),
+                CustomTextField(
+                  hintText: 'Email',
+                  onChanged: (data) {
+                    email = data;
+                  },
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                CustomTextField(
+                  hintText: 'Password',
+                  onChanged: (data) {
+                    password = data;
+                  },
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                CustomButton(
+                  onTap: () async {
+                    if (formKey.currentState!.validate()) {
+                      isLoading = true;
+                      setState(() {
+                        
+                      });
+                      try {
+                        await userRegister();
+                      } on FirebaseAuthException catch (ex) {
+                        if (ex.code == 'weak-password') {
+                          showSnackBar(context, 'Weak Password');
+                        } else if (ex.code == 'email-already-in-use') {
+                          showSnackBar(context, 'email already in use');
+                        }
+                      } catch (ex) {
+                        showSnackBar(context, ex.toString());
+                      }
+                      showSnackBar(context, 'Success');
+                      isLoading = false;
+                      setState(() {
+                        
+                      });
+                    }
+                  },
+                  buttonName: 'REGISTER',
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'alreay have account  ',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text(
+                        '  Login',
+                        style: TextStyle(
+                          color: Color(0xffC7EDE6),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
-            const Spacer(
-              flex: 3,
-            ),
-          ],
+          ),
         ),
       ),
     );
+  }
+
+  void showSnackBar(BuildContext context, String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+      ),
+    );
+  }
+
+  Future<void> userRegister() async {
+    UserCredential userCredential = await FirebaseAuth.instance
+        .createUserWithEmailAndPassword(email: email!, password: password!);
   }
 }

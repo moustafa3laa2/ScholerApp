@@ -1,34 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:schooler_app/constants.dart';
 import 'package:schooler_app/screens/register_screen.dart';
 import 'package:schooler_app/widgets/custom_button.dart';
 import 'package:schooler_app/widgets/custom_text_field.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
+  static String id = 'LoginScreen';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff2B475E),
+      backgroundColor: kPrimaaryColor,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),
-        child: Column(
+        child: ListView(
           children: [
-            const Spacer(
-              flex: 1,
+            const SizedBox(
+              height: 50,
             ),
             const Image(
               image: AssetImage('assets/images/scholar.png'),
+              height: 100,
             ),
-            const Text(
-              'Scholar Chat',
-              style: TextStyle(
-                  fontSize: 32,
-                  fontFamily: 'Pacifico-Regular',
-                  color: Colors.white),
+            const Align(
+              alignment: Alignment.center,
+              child: Text(
+                'Scholar Chat',
+                style: TextStyle(
+                    fontSize: 32,
+                    fontFamily: 'Pacifico-Regular',
+                    color: Colors.white),
+              ),
             ),
-            const Spacer(
-              flex: 2,
+            const SizedBox(
+              height: 60,
             ),
             const Align(
               alignment: Alignment.topLeft,
@@ -43,15 +49,15 @@ class LoginScreen extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            const CustomTextField(hintText: 'Email'),
+             CustomTextField(hintText: 'Email'),
             const SizedBox(
               height: 10,
             ),
-            const CustomTextField(hintText: 'Password'),
+             CustomTextField(hintText: 'Password'),
             const SizedBox(
               height: 10,
             ),
-            const CustomButton(
+             CustomButton(
               buttonName: 'LOGIN',
             ),
             const SizedBox(
@@ -68,13 +74,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute<void>(
-                        builder: (BuildContext context) =>
-                            const RegisterScreen(),
-                      ),
-                    );
+                    Navigator.pushNamed(context, RegisterScreen.id);
                   },
                   child: const Text(
                     '  Register',
@@ -84,9 +84,6 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
               ],
-            ),
-            const Spacer(
-              flex: 3,
             ),
           ],
         ),
