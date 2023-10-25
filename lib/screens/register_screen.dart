@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:schooler_app/constants.dart';
+import 'package:schooler_app/helper/show_snack_bar.dart';
 import 'package:schooler_app/widgets/custom_button.dart';
 import 'package:schooler_app/widgets/custom_text_field.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -92,6 +93,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       });
                       try {
                         await userRegister();
+                        showSnackBar(context, 'Success');
                       } on FirebaseAuthException catch (ex) {
                         if (ex.code == 'weak-password') {
                           showSnackBar(context, 'Weak Password');
@@ -101,7 +103,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       } catch (ex) {
                         showSnackBar(context, ex.toString());
                       }
-                      showSnackBar(context, 'Success');
+                      
                       isLoading = false;
                       setState(() {
                         
@@ -143,13 +145,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-  void showSnackBar(BuildContext context, String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-      ),
-    );
-  }
+
 
   Future<void> userRegister() async {
     UserCredential userCredential = await FirebaseAuth.instance

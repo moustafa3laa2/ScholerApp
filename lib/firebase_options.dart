@@ -44,37 +44,37 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyC5U835DKNlgp72HelCLrcv3A2Q3dzYuSo',
-    appId: '1:218635889450:web:10381a571b1eb05cee8c53',
-    messagingSenderId: '218635889450',
-    projectId: 'chat-app-80155',
-    authDomain: 'chat-app-80155.firebaseapp.com',
-    storageBucket: 'chat-app-80155.appspot.com',
+    apiKey: 'AIzaSyBe_lq-0DjdBXCq49e08CGbEaw53Ah5DHw',
+    appId: '1:699357691457:web:24b80bdc1453eb8ff610c0',
+    messagingSenderId: '699357691457',
+    projectId: 'chat-app-693e4',
+    authDomain: 'chat-app-693e4.firebaseapp.com',
+    storageBucket: 'chat-app-693e4.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBxKHe4WUlM041a2NfILLx9P4UrEE14LCw',
-    appId: '1:218635889450:android:751f7c46cf33ca17ee8c53',
-    messagingSenderId: '218635889450',
-    projectId: 'chat-app-80155',
-    storageBucket: 'chat-app-80155.appspot.com',
+    apiKey: 'AIzaSyB7OUlK6RO9dO9elThXnrEcbYwQYhnUUmw',
+    appId: '1:699357691457:android:21e76c31e59baf71f610c0',
+    messagingSenderId: '699357691457',
+    projectId: 'chat-app-693e4',
+    storageBucket: 'chat-app-693e4.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyD9bT32YJBsugzV1f0pBtgM75H0KE7_HaM',
-    appId: '1:218635889450:ios:967f3bb01b77b377ee8c53',
-    messagingSenderId: '218635889450',
-    projectId: 'chat-app-80155',
-    storageBucket: 'chat-app-80155.appspot.com',
+    apiKey: 'AIzaSyBoqDiRCcgsz3f5O4WyAzMW2Rfh_frhG-Y',
+    appId: '1:699357691457:ios:9261fdd2856e5025f610c0',
+    messagingSenderId: '699357691457',
+    projectId: 'chat-app-693e4',
+    storageBucket: 'chat-app-693e4.appspot.com',
     iosBundleId: 'com.example.schoolerApp',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyD9bT32YJBsugzV1f0pBtgM75H0KE7_HaM',
-    appId: '1:218635889450:ios:2fd02226457d1937ee8c53',
-    messagingSenderId: '218635889450',
-    projectId: 'chat-app-80155',
-    storageBucket: 'chat-app-80155.appspot.com',
+    apiKey: 'AIzaSyBoqDiRCcgsz3f5O4WyAzMW2Rfh_frhG-Y',
+    appId: '1:699357691457:ios:ee672c2edd407e5cf610c0',
+    messagingSenderId: '699357691457',
+    projectId: 'chat-app-693e4',
+    storageBucket: 'chat-app-693e4.appspot.com',
     iosBundleId: 'com.example.schoolerApp.RunnerTests',
   );
 }

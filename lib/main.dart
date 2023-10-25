@@ -20,7 +20,7 @@ class ScholarApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return  MaterialApp(
       routes: {
-        LoginScreen.id :(context) => const LoginScreen(),
+        LoginScreen.id :(context) =>  LoginScreen(),
         RegisterScreen.id : (context) =>  RegisterScreen(),
       },
       debugShowCheckedModeBanner:false,

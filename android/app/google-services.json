@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "218635889450",
-    "project_id": "chat-app-80155",
-    "storage_bucket": "chat-app-80155.appspot.com"
+    "project_number": "699357691457",
+    "project_id": "chat-app-693e4",
+    "storage_bucket": "chat-app-693e4.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:218635889450:android:751f7c46cf33ca17ee8c53",
+        "mobilesdk_app_id": "1:699357691457:android:21e76c31e59baf71f610c0",
         "android_client_info": {
           "package_name": "com.example.schooler_app"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBxKHe4WUlM041a2NfILLx9P4UrEE14LCw"
+          "current_key": "AIzaSyB7OUlK6RO9dO9elThXnrEcbYwQYhnUUmw"
         }
       ],
       "services": {
