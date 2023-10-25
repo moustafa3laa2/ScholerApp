@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:schooler_app/constants.dart';
 import 'package:schooler_app/helper/show_snack_bar.dart';
+import 'package:schooler_app/screens/chat_screen.dart';
 import 'package:schooler_app/screens/register_screen.dart';
 import 'package:schooler_app/widgets/custom_button.dart';
 import 'package:schooler_app/widgets/custom_text_field.dart';
@@ -38,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 50,
                 ),
                 const Image(
-                  image: AssetImage('assets/images/scholar.png'),
+                  image: AssetImage(kLogo),
                   height: 100,
                 ),
                 const Align(
@@ -95,16 +96,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       try {
                         await loginUser();
                         showSnackBar(context, 'Login Success');
+                        Navigator.pushNamed(context, ChatScreen.id);
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'user-not-found') {
                           showSnackBar(
-                              context, 'No user found for that email.');
+                              context, 'No user found for that email.',);
                         } else if (e.code == 'wrong-password') {
                           showSnackBar(context,
-                              'Wrong password provided for that user.');
+                              'Wrong password provided for that user.',);
                         }
                       } catch (e) {
-                        showSnackBar(context, e.toString());
+                        showSnackBar(context, e.toString(),);
                       }
                       
                       isLoading = false;

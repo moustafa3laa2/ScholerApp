@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:schooler_app/firebase_options.dart';
+import 'package:schooler_app/screens/chat_screen.dart';
 import 'package:schooler_app/screens/login_screen.dart';
 import 'package:schooler_app/screens/register_screen.dart';
 
@@ -22,6 +23,7 @@ class ScholarApp extends StatelessWidget {
       routes: {
         LoginScreen.id :(context) =>  LoginScreen(),
         RegisterScreen.id : (context) =>  RegisterScreen(),
+        ChatScreen.id :(context) => ChatScreen(),
       },
       debugShowCheckedModeBanner:false,
       initialRoute: 'LoginScreen',

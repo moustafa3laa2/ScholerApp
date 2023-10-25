@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:schooler_app/constants.dart';
 import 'package:schooler_app/helper/show_snack_bar.dart';
+import 'package:schooler_app/screens/chat_screen.dart';
 import 'package:schooler_app/widgets/custom_button.dart';
 import 'package:schooler_app/widgets/custom_text_field.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -37,7 +38,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   height: 50,
                 ),
                 const Image(
-                  image: AssetImage('assets/images/scholar.png'),
+                  image: AssetImage(kLogo),
                   height: 100,
                 ),
                 const Align(
@@ -88,12 +89,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   onTap: () async {
                     if (formKey.currentState!.validate()) {
                       isLoading = true;
-                      setState(() {
-                        
-                      });
+                      setState(() {});
                       try {
                         await userRegister();
                         showSnackBar(context, 'Success');
+                        Navigator.pushNamed(context, ChatScreen.id);
                       } on FirebaseAuthException catch (ex) {
                         if (ex.code == 'weak-password') {
                           showSnackBar(context, 'Weak Password');
@@ -103,11 +103,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       } catch (ex) {
                         showSnackBar(context, ex.toString());
                       }
-                      
+
                       isLoading = false;
-                      setState(() {
-                        
-                      });
+                      setState(() {});
                     }
                   },
                   buttonName: 'REGISTER',
@@ -144,8 +142,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
     );
   }
-
-
 
   Future<void> userRegister() async {
     UserCredential userCredential = await FirebaseAuth.instance
