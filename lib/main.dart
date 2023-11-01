@@ -26,7 +26,7 @@ class ScholarApp extends StatelessWidget {
         ChatScreen.id :(context) => ChatScreen(),
       },
       debugShowCheckedModeBanner:false,
-      initialRoute: 'LoginScreen',
+      initialRoute: LoginScreen.id,
     );
   }
 }

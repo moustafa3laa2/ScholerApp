@@ -78,6 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 10,
                 ),
                 CustomTextField(
+                  obscureText: true,
                   hintText: 'Password',
                   onChanged: (data) {
                     password = data;
@@ -95,8 +96,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       setState(() {});
                       try {
                         await loginUser();
-                        showSnackBar(context, 'Login Success');
-                        Navigator.pushNamed(context, ChatScreen.id);
+                        // showSnackBar(context, 'Login Success');
+                        Navigator.pushNamed(context, ChatScreen.id,arguments: email);
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'user-not-found') {
                           showSnackBar(
